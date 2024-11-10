@@ -1,0 +1,55 @@
+.bio {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: -60px;
+    border-radius: 10px;
+}
+
+.bio h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #4a90e2;
+}
+
+.bio p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Info Cards */
+.info {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+.info-card {
+    background-color: #e3f2fd;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 250px;
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+}
+
+.info-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #6d5eac;
+}
+
+.info-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+}
