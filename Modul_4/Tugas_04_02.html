@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Alumni</title>
+    <link rel="stylesheet" href="stylesheet_04_02.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        /* Efek hover pada baris tabel */
+        tr:hover {
+            background-color: #f3b7b7;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pencarian Alumni</h1>
+        <!-- Input untuk pencarian nama atau jurusan -->
+        <input type="text" id="search" placeholder="Cari berdasarkan nama atau jurusan..." onkeyup="filterAlumni()">
+        
+        <!-- Tabel Alumni -->
+        <table id="alumniTable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Jurusan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ahmad</td>
+                    <td>Teknik Informatika</td>
+                </tr>
+                <tr>
+                    <td>Rani</td>
+                    <td>Manajemen</td>
+                </tr>
+                <tr>
+                    <td>Bayu</td>
+                    <td>Teknik Mesin</td>
+                </tr>
+                <tr>
+                    <td>Siti</td>
+                    <td>Sistem Informasi</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterAlumni() {
+            let input = document.getElementById("search").value.toLowerCase();  // Ambil input pencarian
+            let table = document.getElementById("alumniTable");  // Ambil tabel alumni
+            let rows = table.getElementsByTagName("tr");  // Ambil semua baris dalam tabel
+
+            // Loop melalui baris (mulai dari baris pertama setelah header)
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");  // Ambil semua sel pada baris
+                let nameCell = cells[0].innerText.toLowerCase();  // Ambil teks dari kolom Nama
+                let jurusanCell = cells[1].innerText.toLowerCase();  // Ambil teks dari kolom Jurusan
+
+                // Cek apakah nama atau jurusan mengandung input pencarian
+                if (nameCell.includes(input) || jurusanCell.includes(input)) {
+                    rows[i].style.display = "";  // Tampilkan baris jika cocok
+                } else {
+                    rows[i].style.display = "none";  // Sembunyikan baris jika tidak cocok
+                }
+            }
+        }
+    </script>
+</body>
+</html>

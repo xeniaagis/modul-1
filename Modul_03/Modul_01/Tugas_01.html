@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Diri</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e3f2fd;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            height: 100vh;
+            background: linear-gradient(135deg, #4a90e2, #6d5eac);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            z-index: 2;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            z-index: 2;
+            position: relative;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 1.2px;
+        }
+
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-top: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Bio Section */
+        .bio {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: -60px;
+            border-radius: 10px;
+        }
+
+        .bio h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #4a90e2;
+        }
+
+        .bio p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Info Cards */
+        .info {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 30px;
+        }
+
+        .info-card {
+            background-color: #e3f2fd;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 250px;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #6d5eac;
+        }
+
+        .info-card p {
+            margin: 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 3rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            .info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <h1>Biodata Diri</h1>
+    <p>Selamat Datang di Halaman Pribadi Saya</p>
+    <img src="FotoSaya.jpg" alt="Foto Profil">
+</header>
+
+<!-- Bio Section -->
+<section class="bio">
+    <h2>Xenia Tri Agistia</h2>
+    <p>
+        Saya adalah seorang mahasiswa di Universitas Kuningan, di prodi Sistem Informasi. 
+        Saya sangat bersemangat dalam belajar hal baru dan terus mengembangkan diri di berbagai bidang. 
+        Dengan latar belakang yang beragam, saya bertujuan untuk memberikan dampak positif di mana pun saya berada.
+    </p>
+
+    <!-- Info Cards -->
+    <div class="info">
+        <div class="info-card">
+            <h3>Tempat, Tanggal Lahir</h3>
+            <p>Kuningan, 28 Agustus 2004</p>
+        </div>
+        <div class="info-card">
+            <h3>Alamat</h3>
+            <p>Desa Luragung Landeuh</p>
+        </div>
+        <div class="info-card">
+            <h3>Email</h3>
+            <p>20230910058@uniku.ac.id</p>
+        </div>
+        <div class="info-card">
+            <h3>Telepon</h3>
+            <p>089678388638</p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

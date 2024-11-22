@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>var vs let vs const</title>
+</head>
+<body>
+  <h1>Perbedaan var, let, dan const</h1>
+  <button onclick="testScope()">Klik untuk Cek Scope</button>
+
+  <script>
+    function testScope() {
+      if (true) {
+        var varVariable = "Ini var";
+        let letVariable = "Ini let";
+        const constVariable = "Ini const";
+        console.log("Dalam blok:");
+        console.log("varVariable:", varVariable); // Output: Ini var
+        console.log("letVariable:", letVariable); // Output: Ini let
+        console.log("constVariable:", constVariable); // Output: Ini const
+      }
+
+      console.log("\nLuar blok:");
+      console.log("varVariable:", varVariable); // Output: Ini var
+      // console.log(letVariable); // Error: letVariable is not defined
+      // console.log(constVariable); // Error: constVariable is not defined
+    }
+
+    // Global scope test
+    var globalVar = "Global var";
+    let globalLet = "Global let";
+    const globalConst = "Global const";
+
+    console.log("\nSebelum reassign:");
+    console.log("globalVar:", globalVar); // Output: Global var
+    console.log("globalLet:", globalLet); // Output: Global let
+    console.log("globalConst:", globalConst); // Output: Global const
+
+    if (true) {
+      var globalVar = "Reassigned var"; // Reassigned
+      // let globalLet = "Reassigned let"; // Error: Cannot redeclare block-scoped variable 'globalLet'
+      // const globalConst = "Reassigned const"; // Error: Cannot redeclare block-scoped variable 'globalConst'
+    }
+
+    console.log("\nSetelah reassign:");
+    console.log("globalVar:", globalVar); // Output: Reassigned var
+    console.log("globalLet:", globalLet); // Output: Global let
+    console.log("globalConst:", globalConst); // Output: Global const
+  </script>
+</body>
+</html>
+

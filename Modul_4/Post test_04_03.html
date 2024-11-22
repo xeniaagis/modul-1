@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contoh Global Scope dan Local Scope</title>
+  <script>
+    // Variabel di global scope
+    let globalVar = "Saya variabel global";
+
+    function contohLocalScope() {
+      // Variabel di local scope
+      let localVar = "Saya variabel lokal";
+      console.log(globalVar); // Bisa mengakses variabel global
+      console.log(localVar);  // Bisa mengakses variabel lokal
+
+      // Tampilkan di halaman HTML
+      document.getElementById("output").innerHTML += `<p>${globalVar}</p>`;
+      document.getElementById("output").innerHTML += `<p>${localVar}</p>`;
+    }
+
+    function cobaGlobal() {
+      // Tampilkan variabel global
+      document.getElementById("output").innerHTML += `<p>${globalVar}</p>`;
+    }
+
+    function cobaLocal() {
+      try {
+        // Coba akses variabel lokal di luar fungsinya
+        document.getElementById("output").innerHTML += `<p>${localVar}</p>`;
+      } catch (error) {
+        document.getElementById("output").innerHTML += `<p>Error: ${error.message}</p>`;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Contoh Global Scope dan Local Scope</h1>
+  <button onclick="contohLocalScope()">Jalankan contohLocalScope</button>
+  <button onclick="cobaGlobal()">Coba akses variabel global</button>
+  <button onclick="cobaLocal()">Coba akses variabel lokal</button>
+  <div id="output"></div>
+</body>
+</html>

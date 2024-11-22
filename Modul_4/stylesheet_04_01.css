@@ -1,0 +1,54 @@
+/* Mengatur gaya dasar untuk tubuh halaman */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Warna latar belakang */
+    display: flex; /* Menggunakan flexbox untuk tata letak */
+    justify-content: center; /* Menyusun elemen secara horizontal di tengah */
+    align-items: center; /* Menyusun elemen secara vertikal di tengah */
+    height: 100vh; /* Mengatur tinggi layar */
+    margin: 0; /* Menghilangkan margin default */
+}
+
+/* Menyusun kontainer utama untuk pencarian alumni */
+.container {
+    background-color: white; /* Warna latar belakang putih */
+    padding: 20px; /* Memberikan jarak di dalam kontainer */
+    border-radius: 5px; /* Memberikan sudut yang melengkung pada kontainer */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Memberikan bayangan ringan pada kotak */
+    max-width: 400px; /* Mengatur lebar maksimum kontainer */
+    width: 100%; /* Lebar 100% agar responsif */
+}
+
+/* Mengatur gaya untuk judul */
+h1 {
+    color: #333; /* Warna teks */
+}
+
+/* Menyusun input teks agar terlihat rapi */
+input[type="text"] {
+    width: 100%; /* Lebar input menyesuaikan lebar kontainer */
+    padding: 8px; /* Memberikan jarak di dalam input */
+    margin-bottom: 10px; /* Memberikan jarak bawah */
+    border: 1px solid #ccc; /* Membuat border input dengan warna abu-abu terang */
+    border-radius: 3px; /* Memberikan sudut melengkung pada input */
+}
+
+/* Menyusun tabel agar lebih rapi */
+table {
+    width: 100%; /* Tabel mengisi seluruh lebar kontainer */
+    border-collapse: collapse; /* Menghilangkan jarak antar border */
+    margin-top: 10px; /* Memberikan jarak atas pada tabel */
+}
+
+/* Mengatur gaya untuk header tabel dan sel tabel */
+th, td {
+    border: 1px solid #ccc; /* Memberikan border abu-abu pada setiap sel */
+    padding: 8px; /* Memberikan jarak di dalam setiap sel */
+    text-align: left; /* Menyusun teks di kiri dalam sel */
+}
+
+/* Efek hover untuk baris tabel */
+tr:hover {
+    background-color: #f3b7b7; /* Mengubah warna latar belakang baris saat kursor berada di atasnya */
+    cursor: pointer; /* Mengubah kursor menjadi pointer untuk menandakan interaksi */
+}
