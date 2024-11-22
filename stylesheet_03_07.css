@@ -1,0 +1,17 @@
+/*style.css*/
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+header,footer {
+    background-color: lightcoral;
+    padding: 10px;
+    text-align: center;
+}
+main {
+    flex: 1;
+    background-color: lightblue;
+    
+}
