@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto Alumni UNIKU</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script_tg.js" defer></script> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: auto;
+            cursor: pointer;
+            opacity: 0; /* Gambar akan muncul setelah dimuat */
+            transition: opacity 0.5s;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .modal-content img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Foto Alumni UNIKU</h1>
+    <div class="gallery">
+        <div class="img-container">
+            <img src="Hendery.jpg" alt="Alumni 1">
+        </div>
+        <div class="img-container">
+            <img src="Jaehyun.jpg" alt="Alumni 2">
+        </div>
+        <div class="img-container">
+            <img src="Johnny Suh.jpg" alt="Alumni 3">
+        </div>
+        <div class="img-container">
+            <img src="Lee Haechan.jpg" alt="Alumni 4">
+        </div>
+        <div class="img-container">
+            <img src="Ooh Sehun.jpg" alt="Alumni 5">
+        </div>
+        <div class="img-container">
+            <img src="Kai.jpg" alt="Alumni 6">
+        </div>
+        <div class="img-container">
+            <img src="Qian Kun.jpg" alt="Alumni 7">
+        </div>
+        <div class="img-container">
+            <img src="Park Chanyeol.jpg" alt="Alumni 8">
+        </div>
+        <div class="img-container">
+            <img src="Ten.jpg" alt="Alumni 9">
+        </div>
+        <div class="img-container">
+            <img src="Wonwoo.jpg" alt="Alumni 10">
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal">
+        <div class="modal-content">
+            <img src="" alt="Gambar Besar">
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+
+</body>
+</html>
