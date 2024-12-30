@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Pop Artist</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .hero {
+            background-image: url('image (1).png'); /* Ganti dengan path gambar artis yang benar */
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .card {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">JYP Entertainment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tentang</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Musik</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Kontak</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Haloo, Selamat Datang</h1>
+        <p>Ikuti perjalanan musik POP</p>
+        <button class="btn btn-light">Dengarkan Sekarang</button>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Musik Terbaru</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="Haechan.jpg" class="card-img-top" alt="Album 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Billionaire</h5>
+                        <audio controls>
+                            <source src="media/music1.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="Haechan (1).jpg" class="card-img-top" alt="Album 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Cinta Luar Biasa</h5>
+                        <audio controls>
+                            <source src="media/music2.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="Haechan-.jpg" class="card-img-top" alt="Album 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Good Person</h5>
+                        <audio controls>
+                            <source src="media/music3.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Tentang Lee Haechan</h2>
+        <p>Lee Haechan atau Haechan dari NCT adalah anggota boygrup populer asuhan SM Entertainment. Selain terkenal dengan suaranya, visual dan kepribadian Lee Haechan juga dicintai penggemar.
+            Saat ini Haechan tergabung dalam NCT 127, NCT U, dan NCT Dream.
+            </p>
+    </div>
+    <footer
