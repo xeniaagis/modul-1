@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowongan Pekerjaan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .search-box {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .table thead th {
+            background-color: #f8f9fa;
+        }
+        .actions button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Lowongan Pekerjaan</h2>
+    <!-- Search and Add Section -->
+    <div class="search-box">
+        <div>
+            <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search">
+        </div>
+        <button class="btn btn-success" data-toggle="modal" data-target="#jobModal" onclick="clearModal()">+ Add</button>
+    </div>
+
+    <!-- Table for Job Listings -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nama Perusahaan</th>
+            <th>Posisi</th>
+            <th>Lokasi</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="jobTableBody">
+        <!-- Data akan dimuat di sini -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const SPREADSHEET_URL = 'https://script.google.com/macros/s/AKfycbyjHFX2CNnP9JpDKH4s495gJLizdc8iqzZRnuMh8Dy74koKuUMFe6sc0cpUyKVuZQr5/exec'; // Ganti dengan URL Apps Script kamu
+
+    // Fetch data from Apps Script URL
+    async function fetchJobData() {
+        try {
+            const response = await fetch(SPREADSHEET_URL);
+            const data = await response.json();
+            populateTable(data);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    }
+
+    // Function for searching job data based on keyword
+    function searchJobs(keyword) {
+        const rows = document.querySelectorAll("#jobTableBody tr");
+
+        rows.forEach(row => {
+            const namaPerusahaan = row.cells[0].textContent.toLowerCase();
+            const posisi = row.cells[1].textContent.toLowerCase();
+            const lokasi = row.cells[2].textContent.toLowerCase();
+            const type = row.cells[3].textContent.toLowerCase();
+
+            const searchTerm = keyword.toLowerCase();
+            // If the search term matches any part of the row, display the row
+            if (namaPerusahaan.includes(searchTerm) || posisi.includes(searchTerm) || lokasi.includes(searchTerm) || type.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Add event listener to search box
+    document.getElementById('searchInput').addEventListener('input', function () {
+        searchJobs(this.value);
+    });
+
+    // Populate table with fetched data
+    function populateTable(data) {
+        const tableBody = document.getElementById('jobTableBody');
+        tableBody.innerHTML = ''; // Clear existing data
+
+        data.forEach((job) => {
+            const row = tableBody.insertRow();
+            row.innerHTML = `
+                <td>${job.nama}</td>
+                <td>${job.posisi}</td>
+                <td>${job.lokasi}</td>
+                <td>${job.type}</td>
+                <td class="actions">
+                    <button class="btn btn-danger btn-sm" onclick="deleteJob(this)">Delete</button>
+                    <button class="btn btn-primary btn-sm" onclick="editJob(this)">Update</button>
+                </td>
+            `;
+        });
+    }
+
+    // Clear modal form
+    function clearModal() {
+        document.getElementById('jobNama').value = '';
+        document.getElementById('jobPosisi').value = '';
+        document.getElementById('jobLokasi').value = '';
+        document.getElementById('jobType').value = 'Fulltime';
+        document.getElementById('editingRowIndex').value = '';
+    }
+
+    // Delete a job with confirmation
+  function deleteJob(button) {
+    // Show confirmation dialog
+    const confirmDelete = window.confirm("Apakah kamu yakin akan menghapusnya?");
+    
+    if (confirmDelete) {
+        const row = button.closest('tr');
+        row.remove();
+        // Logic for deleting the data from the backend (API)
+    }
+  }
+
+
+    // Edit a job (populate modal with row data)
+    function editJob(button) {
+        const row = button.closest('tr');
+        const rowIndex = row.rowIndex - 1; // Adjust for header row
+        document.getElementById('jobNama').value = row.cells[0].innerText;
+        document.getElementById('jobPosisi').value = row.cells[1].innerText;
+        document.getElementById('jobLokasi').value = row.cells[2].innerText;
+        document.getElementById('jobType').value = row.cells[3].innerText;
+        document.getElementById('editingRowIndex').value = rowIndex;
+
+        $('#jobModal').modal('show');
+    }
+
+    // Save job to the table
+    async function saveJob() {
+        const nama = document.getElementById('jobNama').value;
+        const posisi = document.getElementById('jobPosisi').value;
+        const lokasi = document.getElementById('jobLokasi').value;
+        const type = document.getElementById('jobType').value;
+        const editingRowIndex = document.getElementById('editingRowIndex').value;
+
+        const tableBody = document.getElementById('jobTableBody');
+
+        if (editingRowIndex) {
+            // Update existing row
+            const row = tableBody.rows[editingRowIndex];
+            row.cells[0].innerText = nama;
+            row.cells[1].innerText = posisi;
+            row.cells[2].innerText = lokasi;
+            row.cells[3].innerText = type;
+
+            // Optional: Update in backend via API
+        } else {
+            // Add to backend via API
+            try {
+                const response = await fetch(SPREADSHEET_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ nama, posisi, lokasi, type }),
+                });
+
+                const result = await response.json();
+                console.log(result);
+
+                // Refresh table after saving data
+                fetchJobData();
+            } catch (error) {
+                console.error("Error adding job: ", error);
+            }
+        }
+
+        // Hide the modal
+        $('#jobModal').modal('hide');
+    }
+    // Fetch data on page load
+    document.addEventListener('DOMContentLoaded', fetchJobData);
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="jobModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jobModalLabel">Add Job</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="jobForm">
+                    <div class="form-group">
+                        <label for="jobNama">Nama Perusahaan</label>
+                        <input type="text" class="form-control" id="jobNama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobPosisi">Posisi</label>
+                        <input type="text" class="form-control" id="jobPosisi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobLokasi">Lokasi</label>
+                        <input type="text" class="form-control" id="jobLokasi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobType">Type</label>
+                        <select class="form-control" id="jobType">
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Freelance">Freelance</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="editingRowIndex">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveJob()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
